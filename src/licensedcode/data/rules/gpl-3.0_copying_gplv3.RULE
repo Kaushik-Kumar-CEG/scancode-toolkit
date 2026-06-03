@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 90
 ---
 
-COPYING.GPLv3
+COPYING.{{GPLv3}}

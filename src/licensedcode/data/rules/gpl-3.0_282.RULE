@@ -4,6 +4,6 @@ is_license_notice: yes
 relevance: 100
 ---
 
-is licensed GPLv3, which is more restrictive than
+is licensed {{GPLv3}}, which is more restrictive than
     the Pillow license, therefore we will not be distributing binaries
     with libimagequant support enabled.

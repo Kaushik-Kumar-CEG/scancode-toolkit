@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-this source code is distributed under the MIT licence
+this source code is {{distributed under the MIT licence}}

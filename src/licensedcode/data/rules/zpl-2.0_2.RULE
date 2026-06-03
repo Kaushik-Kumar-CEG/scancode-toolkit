@@ -6,4 +6,4 @@ ignorable_urls:
     - http://opensource.org/licenses/ZPL-2.0
 ---
 
-`ZPL-2.0` - [Zope Public License 2.0](http://opensource.org/licenses/ZPL-2.0)
+`{{ZPL-2.0}}` - [{{Zope Public License 2.0}}](http://opensource.org/licenses/ZPL-2.0)

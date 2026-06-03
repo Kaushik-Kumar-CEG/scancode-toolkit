@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-executables and source code are distributed under the MIT licence
+executables and source code are {{distributed under the MIT licence}}

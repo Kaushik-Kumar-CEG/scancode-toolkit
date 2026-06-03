@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 100
 ---
 
-License :: OSI Approved :: Sleepycat License
+License :: OSI Approved :: {{Sleepycat License}}

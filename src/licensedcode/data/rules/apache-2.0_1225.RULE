@@ -10,6 +10,6 @@ ignorable_urls:
 			<name>{{The Apache Software License, Version 2.0}}</name>
 			<url> {{ http://www.apache.org/licenses/LICENSE-2.0.txt }} </url>
 			<distribution>repo</distribution>
-			<comments>All files under Apache 2</comments>
+			<comments>{{All files under Apache 2}}</comments>
 		</license>
 	</licenses>

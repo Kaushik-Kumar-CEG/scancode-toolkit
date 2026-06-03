@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-All configuration is distributed under the [same license as Vim][vim-license] itself.
+All configuration is distributed under the [same license as Vim][{{vim-license}}] itself.

@@ -6,4 +6,4 @@ ignorable_urls:
     - http://asm.objectweb.org/license.html
 ---
 
-License: BSD  (http://asm.objectweb.org/license.html)
+{{License: BSD}}  (http://asm.objectweb.org/license.html)

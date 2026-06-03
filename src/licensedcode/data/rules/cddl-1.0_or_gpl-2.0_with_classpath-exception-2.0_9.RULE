@@ -5,6 +5,6 @@ ignorable_urls:
     - https://github.com/javaee/javax.transaction/blob/master/LICENSE
 ---
 
-name: CDDL + GPLv2 with classpath exception
+name: {{CDDL + GPLv2 with classpath exception}}
 url: https://github.com/javaee/javax.transaction/blob/master/LICENSE
 comments: A business-friendly OSS license

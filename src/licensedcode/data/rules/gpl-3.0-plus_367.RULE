@@ -6,4 +6,4 @@ referenced_filenames:
     - LICENSE
 ---
 
-The code in this project is licensed under GPLv3+. The full licensing text can be found in the LICENSE file
+The code in this project is licensed under {{GPLv3+}}. The full licensing text can be found in the LICENSE file

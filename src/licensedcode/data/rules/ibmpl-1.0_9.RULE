@@ -6,4 +6,4 @@ ignorable_urls:
     - https://opensource.org/licenses/IPL-1.0
 ---
 
-`IPL-1.0` - [IBM Public License](https://opensource.org/licenses/IPL-1.0)
+`{{IPL-1.0}}` - [IBM Public License](https://opensource.org/licenses/IPL-1.0)

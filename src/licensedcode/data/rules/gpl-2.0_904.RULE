@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-SDK licensed under GPLv2
+SDK licensed under {{GPLv2}}

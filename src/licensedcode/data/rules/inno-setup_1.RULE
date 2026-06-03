@@ -10,7 +10,7 @@ ignorable_urls:
     - http://www.jrsoftware.org/
 ---
 
-Inno Setup License
+{{Inno Setup License}}
 ==================
 
 Except where otherwise noted, all of the documentation and software included

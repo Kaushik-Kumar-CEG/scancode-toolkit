@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 80
 ---
 
-License: BSD derived
+{{License: BSD}} derived

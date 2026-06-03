@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 100
 ---
 
-license='GPL v3 or later',
+license='{{GPL v3 or later}}',

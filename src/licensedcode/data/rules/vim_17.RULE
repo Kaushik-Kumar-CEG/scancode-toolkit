@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-## License Same as VIM license. For more info see `:help license`.
+## License Same as {{VIM license}}. For more info see `:help license`.

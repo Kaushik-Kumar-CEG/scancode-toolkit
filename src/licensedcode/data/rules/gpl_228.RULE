@@ -4,4 +4,4 @@ is_license_notice: yes
 minimum_coverage: 100
 ---
 
-This tool is free software: you can redistribute it and/or modify it under the terms of the GNU GPL.
+This tool is free software: you can redistribute it and/or modify it under the terms of the {{GNU GPL}}.

@@ -6,4 +6,4 @@ ignorable_urls:
     - http://opensource.org/licenses/gpl-license.php
 ---
 
-@license http://opensource.org/licenses/gpl-license.php GNU Public License
+@license http://opensource.org/licenses/gpl-license.php {{GNU Public License}}

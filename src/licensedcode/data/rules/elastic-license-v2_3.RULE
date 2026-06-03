@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-ELASTIC-LICENSE-2.0
+{{ELASTIC-LICENSE}}-2.0

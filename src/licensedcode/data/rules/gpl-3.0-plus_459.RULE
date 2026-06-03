@@ -6,7 +6,7 @@ ignorable_urls:
     - https://www.gnu.org/licenses/
 ---
 
-GPL 3+
+{{GPL 3+}}
 
 {{GPL-3.0+}}
 

@@ -4,8 +4,8 @@ is_license_notice: yes
 ---
 
 dnl  This library is free software; you can redistribute it and/or
-dnl  modify it under the terms of version 2.1 of the GNU Lesser General
-dnl  Public License as published by the Free Software Foundation.
+dnl  modify it under the terms of {{version 2.1 of the GNU Lesser General
+dnl  Public License}} as published by the Free Software Foundation.
 dnl
 dnl  This library is distributed in the hope that it will be useful,
 dnl  but WITHOUT ANY WARRANTY; without even the implied warranty of

@@ -3,4 +3,4 @@ license_expression: aml
 is_license_reference: yes
 ---
 
-AML  Apple MIT License
+AML  {{Apple MIT License}}

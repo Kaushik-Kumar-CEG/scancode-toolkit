@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 99
 ---
 
-License :: OSI Approved :: PostgreSQL License
+License :: OSI Approved :: {{PostgreSQL License}}

@@ -6,4 +6,4 @@ ignorable_urls:
     - https://wixtoolset.org/about/license
 ---
 
-licensed under the [MS-RL](https://wixtoolset.org/about/license/).
+licensed under the [{{MS-RL}}](https://wixtoolset.org/about/license/).

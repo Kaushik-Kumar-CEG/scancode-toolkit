@@ -4,7 +4,7 @@ is_license_notice: yes
 minimum_coverage: 90
 ---
 
-License: BSD
+{{License: BSD}}
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

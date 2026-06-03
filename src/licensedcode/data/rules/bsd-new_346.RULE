@@ -6,4 +6,4 @@ ignorable_urls:
     - http://www.scala-lang.org/downloads/license.html
 ---
 
-License: BSD-like  (http://www.scala-lang.org/downloads/license.html
+{{License: BSD}}-like  (http://www.scala-lang.org/downloads/license.html

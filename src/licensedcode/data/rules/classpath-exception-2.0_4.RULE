@@ -4,12 +4,12 @@ is_license_notice: yes
 notes: Oracle GPL cpe
 ---
 
-"CLASSPATH" EXCEPTION TO THE GPL VERSION 2
+"{{CLASSPATH" EXCEPTION}} TO THE GPL VERSION 2
 
 Certain source files distributed by Oracle are subject to the following
 clarification and special exception to the GPL Version 2, but only where Oracle
 has expressly included in the particular source file's header the words "Oracle
-designates this particular file as subject to the "Classpath" exception as
+designates this particular file as subject to the "{{Classpath" exception}} as
 provided by Oracle in the License file that accompanied this code."
 
 Linking this library statically or dynamically with other modules is making a

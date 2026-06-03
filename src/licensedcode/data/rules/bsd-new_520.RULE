@@ -4,5 +4,5 @@ is_license_tag: yes
 relevance: 95
 ---
 
-License: BSD-like
+{{License: BSD}}-like
  Same license text as

@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-License:        This document is published under the GNU GPL
+License:        This document is published under the {{GNU GPL}}

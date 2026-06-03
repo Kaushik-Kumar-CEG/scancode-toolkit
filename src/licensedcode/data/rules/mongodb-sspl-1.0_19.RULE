@@ -6,7 +6,7 @@ ignorable_urls:
 ---
 
 <license>
-      <name>Server Side Public License, v 1</name>
+      <name>{{Server Side Public License, v 1}}</name>
       <url>https://www.mongodb.com/licensing/server-side-public-license</url>
       <distribution>repo</distribution>
     </license>

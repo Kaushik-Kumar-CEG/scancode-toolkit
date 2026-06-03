@@ -3,5 +3,5 @@ license_expression: amazon-sl
 is_license_notice: yes
 ---
 
-licensed under the Amazon Software License. In accordance with the terms of such
-license, I am releasing my version also under the Amazon Software License.
+licensed under the {{Amazon Software License}}. In accordance with the terms of such
+license, I am releasing my version also under the {{Amazon Software License}}.

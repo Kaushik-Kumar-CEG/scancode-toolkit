@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-Upgrade license from LGPLv2+ to LGPLv2.1+
+Upgrade license from LGPLv2+ to {{LGPLv2.1+}}

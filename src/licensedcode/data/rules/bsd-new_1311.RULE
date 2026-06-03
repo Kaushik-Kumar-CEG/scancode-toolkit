@@ -6,5 +6,5 @@ referenced_filenames:
     - LICENSE
 ---
 
-License
-BSD, see `LICENSE` file for details.
+{{License
+BSD}}, see `LICENSE` file for details.

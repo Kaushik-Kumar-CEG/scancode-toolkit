@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-licensed under "GPL version 3 or later"
+licensed under "{{GPL version 3 or later}}"

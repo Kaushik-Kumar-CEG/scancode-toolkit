@@ -7,5 +7,5 @@ referenced_filenames:
 ---
 
 license
-   LicenseText "GNU GENERAL PUBLIC LICENCE, v2"
+   LicenseText "{{GNU GENERAL PUBLIC LICENCE, v2}}"
    LicenseData COPYING

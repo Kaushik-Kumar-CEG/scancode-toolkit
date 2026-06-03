@@ -9,7 +9,7 @@ ignorable_urls:
     - https://www.apache.org/licenses/LICENSE-2.0.html
 ---
 
-# The Parity Public License 7.0.0
+# {{The Parity Public License 7.0.0}}
 
 Contributor: $name
 

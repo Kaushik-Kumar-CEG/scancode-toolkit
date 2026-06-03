@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-gnuplot  gnuplot License
+gnuplot  {{gnuplot License}}

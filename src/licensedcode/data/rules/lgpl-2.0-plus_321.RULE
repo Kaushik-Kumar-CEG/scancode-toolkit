@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-Licensing: This code is distributed under the GNU LGPL license.
+Licensing: This code is distributed under the {{GNU LGPL}} license.

@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 100
 ---
 
-SPDX-Lincense-Identifier: GLP-3.0
+SPDX-Lincense-Identifier: {{GLP-3.0}}

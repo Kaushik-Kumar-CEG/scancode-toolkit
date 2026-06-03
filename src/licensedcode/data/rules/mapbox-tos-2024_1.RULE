@@ -7,7 +7,7 @@ ignorable_urls:
 ---
 
 /***** START WARNING - REMOVAL OR MODIFICATION OF THE
-    * FOLLOWING CODE VIOLATES THE MAPBOX TERMS OF SERVICE  ******
+    * FOLLOWING CODE VIOLATES THE {{MAPBOX TERMS OF SERVICE}}  ******
     * The following code is used to access Mapbox's APIs. Removal or modification
     * of this code can result in higher fees and/or
     * termination of your account with Mapbox.
@@ -16,4 +16,4 @@ ignorable_urls:
     * Mapping APIs other than through Mapbox SDKs.
     *
     * The Mapping APIs documentation is available at https://docs.mapbox.com/api/maps/#maps
-    * and the Mapbox Terms of Service are available at https://www.mapbox.com/tos/
+    * and the {{Mapbox Terms of Service}} are available at https://www.mapbox.com/tos/

@@ -3,5 +3,5 @@ license_expression: tcl
 is_license_notice: yes
 ---
 
-See Tcl/Tk License Terms for information on usage and redistribution
+See {{Tcl/Tk License}} Terms for information on usage and redistribution
 of this file, and for a DISCLAIMER OF ALL WARRANTIES.

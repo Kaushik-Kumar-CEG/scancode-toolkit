@@ -4,7 +4,7 @@ is_license_notice: yes
 relevance: 100
 ---
 
-all software (original and derived) is covered under the GPL (version 2 or later)
+all software (original and derived) is covered under the {{GPL (version 2 or later}})
 
  On Debian GNU/Linux systems, the complete text of the {{GNU General
  Public License Version 2}} can be found in

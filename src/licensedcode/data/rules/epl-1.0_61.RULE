@@ -11,7 +11,7 @@ ignorable_urls:
     - http://junit.org/license.html
 ---
 
-copyrighted software made available under Version 1.0 of the GNU Eclipse Public
-License http://junit.org/license.html. Complete source code for junit, including
+copyrighted software made available under Version 1.0 of the GNU {{Eclipse Public
+License}} http://junit.org/license.html. Complete source code for junit, including
 complete copyright information, may be obtained here
 http://junit.org/license.html.

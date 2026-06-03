@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-releasing libraries under GPL-2
+releasing libraries under {{GPL-2}}

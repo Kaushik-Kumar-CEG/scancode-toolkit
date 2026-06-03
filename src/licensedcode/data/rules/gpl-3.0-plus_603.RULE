@@ -6,4 +6,4 @@ referenced_filenames:
     - COPYING
 ---
 
-The project is licensed under GPLv3+, see COPYING for details.
+The project is licensed under {{GPLv3+}}, see COPYING for details.

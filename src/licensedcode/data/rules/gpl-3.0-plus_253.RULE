@@ -5,4 +5,4 @@ relevance: 100
 notes: FFmpeg configure result strings as found in binaries
 ---
 
-license="GPL version 3 or later"
+license="{{GPL version 3 or later}}"

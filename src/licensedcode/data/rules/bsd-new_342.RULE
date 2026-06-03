@@ -6,4 +6,4 @@ ignorable_urls:
     - http://software.clapper.org/grizzled-slf4j/license.html
 ---
 
-License: BSD  (http://software.clapper.org/grizzled-slf4j/license.html)
+{{License: BSD}}  (http://software.clapper.org/grizzled-slf4j/license.html)

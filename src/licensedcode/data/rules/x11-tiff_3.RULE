@@ -3,8 +3,8 @@ license_expression: x11-tiff
 is_license_notice: yes
 ---
 
-The licence agreement for this file is the same as the rest of the LibTiff
-library.
+{{The licence agreement for this file is the same as the rest of the LibTiff
+library}}.
 
 IN NO EVENT SHALL  OR  SYSTEMS BE LIABLE FOR
 ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,

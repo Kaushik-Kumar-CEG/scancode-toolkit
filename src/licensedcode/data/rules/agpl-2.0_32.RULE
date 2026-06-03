@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 100
 ---
 
-gnu agpl 2.0
+gnu {{agpl 2.0}}

@@ -6,4 +6,4 @@ ignorable_urls:
     - https://licenses.nuget.org/MIT
 ---
 
-License MIT [https://licenses.nuget.org/MIT]
+{{License MIT}} [https://licenses.nuget.org/MIT]

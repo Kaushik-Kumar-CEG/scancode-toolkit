@@ -6,6 +6,6 @@ ignorable_urls:
     - http://www.ohwr.org/licenses/cern-ohl/v1.2
 ---
 
-licensed under the `CERN Open Hardware Licence v1.2`_.
+licensed under the `{{CERN Open Hardware Licence v1.2}}`_.
 
-.. _CERN Open Hardware Licence v1.2: http://www.ohwr.org/licenses/cern-ohl/v1.2
+.. _{{CERN Open Hardware Licence v1.2}}: http://www.ohwr.org/licenses/cern-ohl/v1.2

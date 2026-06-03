@@ -5,7 +5,7 @@ minimum_coverage: 10
 notes: license text as published by SPDX
 ---
 
-Fair License
+{{Fair License}}
 (plain text)
 <Copyright Information>
 
@@ -13,4 +13,4 @@ Usage of the works is permitted provided that this instrument is retained with t
 
 DISCLAIMER: THE WORKS ARE WITHOUT WARRANTY.
 
-[2004, Fair License: rhid.com/fair (this URL no longer works)]
+[2004, {{Fair License}}: rhid.com/fair (this URL no longer works)]

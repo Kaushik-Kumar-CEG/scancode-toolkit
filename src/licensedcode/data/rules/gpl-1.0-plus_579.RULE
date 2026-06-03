@@ -5,6 +5,6 @@ referenced_filenames:
     - COPYING
 ---
 
-This software is freely distributable under the GNU public license, a
+This software is freely distributable under the {{GNU public license}}, a
 copy of which you should have received with this software (in a file
 called COPYING).

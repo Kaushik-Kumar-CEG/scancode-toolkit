@@ -6,4 +6,4 @@ ignorable_urls:
     - https://www.gnu.org/copyleft/lesser.html
 ---
 
-* @license   https://www.gnu.org/copyleft/lesser.html The GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0
+* @license   https://www.gnu.org/copyleft/lesser.html The {{GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0}}

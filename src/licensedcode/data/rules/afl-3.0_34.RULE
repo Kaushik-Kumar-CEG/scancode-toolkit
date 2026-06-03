@@ -3,4 +3,4 @@ license_expression: afl-3.0
 is_license_reference: yes
 ---
 
-AFL-3.0  Academic Free License v3.0
+{{AFL-3.0}}  Academic Free License v3.0

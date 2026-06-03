@@ -6,4 +6,4 @@ referenced_filenames:
     - licenses/ELASTIC-LICENSE-2.0.txt
 ---
 
-code covered by the [Elastic license](licenses/ELASTIC-LICENSE-2.0.txt)
+code covered by the [{{Elastic license}}](licenses/ELASTIC-LICENSE-2.0.txt)

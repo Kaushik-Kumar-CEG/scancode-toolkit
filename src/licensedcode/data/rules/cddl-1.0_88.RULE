@@ -5,5 +5,5 @@ ignorable_urls:
     - https://glassfish.dev.java.net/public/CDDLv1.0.html
 ---
 
-<name>Common Development and Distribution License (CDDL) v1.0</name>
+<name>{{Common Development and Distribution License (CDDL) v1.0}}</name>
       <url>https://glassfish.dev.java.net/public/CDDLv1.0.html</url>

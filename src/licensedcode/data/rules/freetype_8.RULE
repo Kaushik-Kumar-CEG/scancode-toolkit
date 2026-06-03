@@ -6,4 +6,4 @@ ignorable_urls:
     - http://freetype.sourceforge.net/FTL.TXT
 ---
 
-The FreeType Project License may be found at http://freetype.sourceforge.net/FTL.TXT
+The {{FreeType Project License}} may be found at http://freetype.sourceforge.net/FTL.TXT

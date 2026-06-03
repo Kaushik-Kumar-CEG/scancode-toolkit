@@ -7,4 +7,4 @@ ignorable_urls:
     - http://xstream.codehaus.org/license.html
 ---
 
-License: BSD style  (http://xstream.codehaus.org/license.html
+{{License: BSD}} style  (http://xstream.codehaus.org/license.html

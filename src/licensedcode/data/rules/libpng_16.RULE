@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-released under the libpng license.
+released under the {{libpng license}}.

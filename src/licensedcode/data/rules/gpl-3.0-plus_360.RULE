@@ -6,4 +6,4 @@ referenced_filenames:
     - LICENSE
 ---
 
-/* Licensed under GPLv3+ - see LICENSE file for details */
+/* Licensed under {{GPLv3+}} - see LICENSE file for details */

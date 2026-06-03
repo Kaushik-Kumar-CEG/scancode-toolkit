@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 100
 ---
 
-License: BSD-C3
+{{License: BSD}}-C3

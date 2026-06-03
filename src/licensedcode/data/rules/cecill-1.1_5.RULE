@@ -3,4 +3,4 @@ license_expression: cecill-1.1
 is_license_reference: yes
 ---
 
-CECILL-1.1  CeCILL Free Software License Agreement v1.1
+{{CECILL-1.1}}  {{CeCILL Free Software License Agreement v1.1}}

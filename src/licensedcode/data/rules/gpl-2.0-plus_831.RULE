@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-whole must be conveyed under "GPL version 2 or later".
+whole must be conveyed under "{{GPL version 2 or later}}".

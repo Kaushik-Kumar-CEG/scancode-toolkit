@@ -7,4 +7,4 @@ ignorable_urls:
 
 <name>{{EPL-2.0}}
       <url>https://opensource.org/licenses/EPL-2.0
-      <comments>Eclipse Public License, Version 2.0
+      <comments>{{Eclipse Public License, Version 2.0}}

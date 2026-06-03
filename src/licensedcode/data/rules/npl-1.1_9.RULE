@@ -7,4 +7,4 @@ referenced_filenames:
     - license/third_party/rhino_LICENSE.txt
 ---
 
-License: Netscape Public License 1.1 ([license/third_party/rhino_LICENSE.txt][rhino])
+License: {{Netscape Public License 1.1}} ([license/third_party/rhino_LICENSE.txt][rhino])

@@ -6,4 +6,4 @@ referenced_filenames:
     - LICENSE.rst
 ---
 
-licensed under GPLv3+ (see LICENSE.rst).
+licensed under {{GPLv3+}} (see LICENSE.rst).

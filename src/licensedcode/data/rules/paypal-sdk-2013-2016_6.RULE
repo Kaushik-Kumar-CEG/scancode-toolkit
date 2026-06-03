@@ -7,5 +7,5 @@ ignorable_urls:
 ---
 
 <license>
-      <name>PayPal SDK License
+      <name>{{PayPal SDK License}}
       <url>https://github.com/paypal/PayPal-Java-SDK/blob/master/LICENSE.txt

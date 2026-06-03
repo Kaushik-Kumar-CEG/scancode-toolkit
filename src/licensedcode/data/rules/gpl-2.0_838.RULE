@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-marked as "GPL-2"
+marked as "{{GPL-2}}"

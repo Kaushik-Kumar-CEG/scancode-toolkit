@@ -6,5 +6,5 @@ referenced_filenames:
     - COPYING
 ---
 
-This library is distributed under GNU LGPL version 2, which can be
+This library is distributed {{under GNU LGPL}} version 2, which can be
 found in the file  "COPYING".

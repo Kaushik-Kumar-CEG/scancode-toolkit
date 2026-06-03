@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-Since these are GPLv3+ compatible licenses, the whole project is licensed under GPLv3+.
+Since these are {{GPLv3+}} compatible licenses, the whole project is licensed under {{GPLv3+}}.

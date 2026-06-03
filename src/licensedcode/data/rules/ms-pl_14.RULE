@@ -3,9 +3,9 @@ license_expression: ms-pl
 is_license_text: yes
 ---
 
-Microsoft Permissive License (Ms-PL) v1.1
+Microsoft Permissive License ({{Ms-PL}}) v1.1
 
-Microsoft Permissive License (Ms-PL)
+Microsoft Permissive License ({{Ms-PL}})
 
 This license governs use of the accompanying software. If you use the software,
 you accept this license. If you do not accept the license, do not use the

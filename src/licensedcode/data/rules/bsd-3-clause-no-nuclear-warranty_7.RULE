@@ -7,7 +7,7 @@ referenced_filenames:
 
 <licenses>
     <license>
-      <name>BSD 3-clause License w/nuclear disclaimer</name>
+      <name>{{BSD 3-clause License w/nuclear disclaimer}}</name>
       <url>LICENSE.txt</url>
       <distribution>repo</distribution>
     </license>

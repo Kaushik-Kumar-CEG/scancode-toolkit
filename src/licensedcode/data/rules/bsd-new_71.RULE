@@ -7,4 +7,4 @@ referenced_filenames:
 notes: very short mention
 ---
 
-License: BSD (see docs/LICENSE for details)
+{{License: BSD}} (see docs/LICENSE for details)

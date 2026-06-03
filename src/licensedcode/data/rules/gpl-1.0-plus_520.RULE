@@ -6,5 +6,5 @@ ignorable_urls:
     - https://www.gnu.org/copyleft/gpl.html
 ---
 
-sources are released under the terms of the GPL
+sources are released under the terms of {{the GPL}}
 (https://www.gnu.org/copyleft/gpl.html).

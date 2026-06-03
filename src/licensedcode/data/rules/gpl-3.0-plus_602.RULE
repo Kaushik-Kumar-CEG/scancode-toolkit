@@ -6,4 +6,4 @@ ignorable_urls:
     - https://gnu.org/licenses/gpl.html
 ---
 
-License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+License {{GPLv3+}}: {{GNU GPL version 3 or later}} <https://gnu.org/licenses/gpl.html>

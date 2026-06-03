@@ -4,4 +4,4 @@ is_license_reference: yes
 ---
 
 On Debian systems, the full text of the {{GNU General Public License
- version 3}} can be found in the file `/usr/share/common-licenses/GPL-3.
+ version 3}} can be found in the file `/{{usr/share/common-licenses/GPL-3}}.

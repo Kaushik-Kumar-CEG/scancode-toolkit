@@ -7,5 +7,5 @@ ignorable_urls:
     - http://www.unicode.org/copyright.html
 ---
 
-data and software is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html)
+data and software is governed by the [{{Unicode Terms of Use}}](http://www.unicode.org/copyright.html)
 a copy of which is included as [LICENSE](./LICENSE).

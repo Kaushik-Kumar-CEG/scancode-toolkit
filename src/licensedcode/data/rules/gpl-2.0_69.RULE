@@ -11,7 +11,7 @@ ignorable_emails:
 
 License for all components is:
 --
-  {{GNU General Public License, version 2}} (GPL-2)
+  {{GNU General Public License, version 2}} ({{GPL-2}})
 
   |   This file is part of the Qt Script Generator project on Trolltech Labs.
   |

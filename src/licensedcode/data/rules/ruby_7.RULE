@@ -4,7 +4,7 @@ is_license_notice: yes
 ---
 
 License: 
-Ruby License
+{{Ruby License}}
 
 This module is free software. You may use, modify, and/or redistribute this
 software under the same terms as Ruby.

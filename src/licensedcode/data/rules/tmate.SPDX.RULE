@@ -11,7 +11,7 @@ ignorable_emails:
     - support@svnkit.com
 ---
 
-The TMate Open Source License.
+The {{TMate Open Source License}}.
 
 This license applies to all portions of TMate SVNKit library, which are not externally-maintained libraries (e.g. Ganymed SSH library).
 

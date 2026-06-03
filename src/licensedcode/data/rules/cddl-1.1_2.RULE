@@ -6,4 +6,4 @@ ignorable_urls:
     - https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
 ---
 
-License: CDDL 1.1  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+License: {{CDDL 1.1}}  (https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html

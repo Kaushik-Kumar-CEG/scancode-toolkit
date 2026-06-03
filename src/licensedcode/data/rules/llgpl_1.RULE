@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 90
 ---
 
-licenses(["restricted"]) # LLGPL (Lisp Lesser General Public Licence)
+licenses(["restricted"]) # LLGPL ({{Lisp Lesser General Public Licence}})

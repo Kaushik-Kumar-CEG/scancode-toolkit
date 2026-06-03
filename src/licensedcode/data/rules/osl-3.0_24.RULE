@@ -6,7 +6,7 @@ ignorable_urls:
     - https://opensource.org/licenses/osl-3.0.php
 ---
 
-* This source file is subject to the Open Software License (OSL 3.0)
+* This source file is subject to the Open Software License ({{OSL 3.0}})
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
  * https://opensource.org/licenses/osl-3.0.php
@@ -14,4 +14,4 @@ ignorable_urls:
  * obtain it through the world-wide-web, please send an email
  * to license .com so we can send you a copy immediately.
  *
- * @license     https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @license     https://opensource.org/licenses/osl-3.0.php  Open Software License ({{OSL 3.0}})

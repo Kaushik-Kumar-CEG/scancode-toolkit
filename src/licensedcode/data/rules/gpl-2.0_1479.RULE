@@ -6,6 +6,6 @@ referenced_filenames:
     - LICENSE
 ---
 
-license: GLP-2.0
+license: {{GLP-2.0}}
   license_family: GPL
   license_file: LICENSE

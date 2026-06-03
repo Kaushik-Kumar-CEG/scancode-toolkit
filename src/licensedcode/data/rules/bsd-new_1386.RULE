@@ -7,7 +7,7 @@ ignorable_urls:
     - https://golang.org/LICENSE
 ---
 
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
+// Use of this source code is {{governed by a BSD-style
+// license}} that can be found in the LICENSE file.
 
 // See the {{go license}} at https://golang.org/LICENSE.

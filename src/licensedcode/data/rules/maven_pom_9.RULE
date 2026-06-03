@@ -6,4 +6,4 @@ ignorable_urls:
     - http://www.linfo.org/bsdlicense.html
 ---
 
-License: BSD  (http://www.linfo.org/bsdlicense.html)
+{{License: BSD}}  (http://www.linfo.org/bsdlicense.html)

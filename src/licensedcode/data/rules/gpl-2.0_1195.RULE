@@ -6,4 +6,4 @@ ignorable_urls:
     - https://www.gnu.org/licenses
 ---
 
-__license__ = "GPLv2 (https://www.gnu.org/licenses/)"
+__license__ = "{{GPLv2}} (https://www.gnu.org/licenses/)"

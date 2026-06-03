@@ -6,5 +6,5 @@ ignorable_urls:
     - https://www.gnu.org/licenses/lgpl-2.0.txt
 ---
 
-- GNU LGPL 2 or later
+- {{GNU LGPL}} 2 or later
 https://www.gnu.org/licenses/lgpl-2.0.txt

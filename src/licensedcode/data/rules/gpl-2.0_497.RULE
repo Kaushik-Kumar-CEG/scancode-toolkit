@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-license is GPLv2
+license is {{GPLv2}}

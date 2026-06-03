@@ -6,4 +6,4 @@ notes: we picked the latest version and we set the relevance to less than 100 be
     the tag does not have a license version
 ---
 
-License :: OSI Approved :: Artistic License
+License :: OSI Approved :: {{Artistic License}}

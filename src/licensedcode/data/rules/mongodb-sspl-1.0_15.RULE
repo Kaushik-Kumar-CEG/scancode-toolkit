@@ -6,4 +6,4 @@ minimum_coverage: 100
 notes: Rule based on an SPDX license identifier and name
 ---
 
-Server Side Public License, v 1 SSPL-1.0
+{{Server Side Public License, v 1}} {{SSPL-1.0}}

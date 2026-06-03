@@ -4,4 +4,4 @@ is_license_reference: yes
 relevance: 100
 ---
 
-Used-Licenses: GPL-2
+Used-Licenses: {{GPL-2}}

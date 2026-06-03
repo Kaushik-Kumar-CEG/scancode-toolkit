@@ -8,5 +8,5 @@ ignorable_urls:
     - http://opensource.org/licenses/gpl-license.php
 ---
 
-Licensed under the GNU GPL. For full terms see the file COPYING.
- @license http://opensource.org/licenses/gpl-license.php GNU Public License
+Licensed under the {{GNU GPL}}. For full terms see the file COPYING.
+ @license http://opensource.org/licenses/gpl-license.php {{GNU Public License}}

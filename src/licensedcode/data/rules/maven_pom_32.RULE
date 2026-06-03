@@ -6,4 +6,4 @@ ignorable_urls:
     - http://creativecommons.org/licenses/by-sa/2.5
 ---
 
-License: CC BY-SA 2.5  (http://creativecommons.org/licenses/by-sa/2.5/)
+License: {{CC BY-SA 2.5}}  (http://creativecommons.org/licenses/by-sa/2.5/)

@@ -5,7 +5,7 @@ ignorable_urls:
     - http://www.microsoft.com/en-us/openness/resources/licenses.aspx#MPL
 ---
 
-' This source is subject to the Microsoft Public License.
+' This source is subject to the {{Microsoft Public License}}.
 ' See http://www.microsoft.com/en-us/openness/resources/licenses.aspx#MPL.
 ' All other rights reserved.
 '

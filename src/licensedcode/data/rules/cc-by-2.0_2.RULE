@@ -6,4 +6,4 @@ ignorable_urls:
     - http://creativecommons.org/licenses/by/2.0
 ---
 
-license         CC-BY 2.0 (http://creativecommons.org/licenses/by/2.0/),
+license         {{CC-BY 2.0}} (http://creativecommons.org/licenses/by/2.0/),

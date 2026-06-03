@@ -5,6 +5,6 @@ ignorable_urls:
     - https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html
 ---
 
-name: CDDL + GPLv2 with classpath exception
+name: {{CDDL + GPLv2 with classpath exception}}
 url: https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html
 comments: A business-friendly OSS license

@@ -8,4 +8,4 @@ notes: Seen in libcap in Go
 ---
 
 package is distributed with a
-"you choose" License. Specifically: BSD three clause, or GPL2.
+"you choose" License. Specifically: {{BSD three clause, or GPL2}}.

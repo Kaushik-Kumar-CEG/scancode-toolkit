@@ -4,6 +4,6 @@ is_license_notice: yes
 notes: GFDL notice, debian style
 ---
 
-The documentation is licensed under the GNU Free Documentation License (v1.2).
+The documentation is licensed under the {{GNU Free Documentation License (v1.2}}).
 On Debian GNU/Linux systems, the complete text of this license is in
 `/usr/share/common-licenses/GFDL-1.2'.

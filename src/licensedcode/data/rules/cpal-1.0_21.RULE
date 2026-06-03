@@ -6,7 +6,7 @@ ignorable_urls:
 ---
 
 # ***** BEGIN LICENSE BLOCK *****
-# Version: CPAL 1.0
+# Version: {{CPAL 1.0}}
 #
 # The contents of this file are subject to the Common Public Attribution
 # License Version 1.0 (CPAL); you may not use this file except in

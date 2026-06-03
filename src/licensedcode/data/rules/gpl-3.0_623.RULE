@@ -4,4 +4,4 @@ is_license_tag: yes
 relevance: 100
 ---
 
-SPDX-Lincense-Identifier: GPL-3.0-only
+SPDX-Lincense-Identifier: {{GPL-3.0-only}}

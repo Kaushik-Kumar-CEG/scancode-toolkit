@@ -7,4 +7,4 @@ referenced_filenames:
     - license/third_party/dart_LICENSE.txt
 ---
 
-License: BSD ([license/third_party/dart_LICENSE.txt][dart])
+{{License: BSD}} ([license/third_party/dart_LICENSE.txt][dart])

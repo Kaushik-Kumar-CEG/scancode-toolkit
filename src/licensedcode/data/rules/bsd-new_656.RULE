@@ -7,4 +7,4 @@ referenced_filenames:
     - license/third_party/asm_license.txt
 ---
 
-License: BSD ([license/third_party/asm_license.txt][asm])
+{{License: BSD}} ([license/third_party/asm_license.txt][asm])

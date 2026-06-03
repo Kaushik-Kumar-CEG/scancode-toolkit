@@ -4,6 +4,6 @@ is_license_notice: yes
 minimum_coverage: 85
 ---
 
-License GPLv3+: GNU GPL version 3 or later
+License {{GPLv3+}}: {{GNU GPL version 3 or later}}
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.

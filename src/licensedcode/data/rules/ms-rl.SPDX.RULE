@@ -5,7 +5,7 @@ minimum_coverage: 10
 notes: license text as published by SPDX
 ---
 
-Microsoft Reciprocal License (Ms-RL)
+{{Microsoft Reciprocal License}} ({{Ms-RL}})
  
 
 This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.

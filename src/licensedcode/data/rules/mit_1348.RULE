@@ -6,4 +6,4 @@ referenced_filenames:
     - mit.LICENSE
 ---
 
-released under the MIT license located in the root of the repo at /mit.LICENSE
+released {{under the MIT license}} located in the root of the repo at /mit.LICENSE

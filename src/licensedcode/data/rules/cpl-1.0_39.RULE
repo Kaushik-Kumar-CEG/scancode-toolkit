@@ -6,4 +6,4 @@ ignorable_urls:
     - http://opensource.org/licenses/cpl1.0.php
 ---
 
-<a href="http://opensource.org/licenses/cpl1.0.php">Common Public License 1.0</a>
+<a href="http://opensource.org/licenses/cpl1.0.php">{{Common Public License 1.0}}</a>

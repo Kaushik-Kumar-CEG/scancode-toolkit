@@ -6,4 +6,4 @@ ignorable_urls:
     - https://wixtoolset.org/about/license
 ---
 
-Project License Type: [MS-RL](https://wixtoolset.org/about/license/)
+Project License Type: [{{MS-RL}}](https://wixtoolset.org/about/license/)
