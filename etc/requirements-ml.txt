@@ -1,0 +1,21 @@
+# Dependencies for training the required phrase NER model
+# These are kept apart from scancode runtime requirements, they are only
+# needed to train and export the model, not to run a scan
+#
+# install with: pip install -r etc/requirements-ml.txt
+
+torch>=2.0
+transformers==4.44.2
+sentencepiece==0.2.0
+protobuf>=3.20
+accelerate==0.33.0
+
+# CRF layer on top of the token classifier
+pytorch-crf==0.7.2
+
+# span level scoring
+seqeval==1.2.2
+
+# ONNX export for CPU inference
+onnx==1.16.2
+onnxruntime==1.18.1
