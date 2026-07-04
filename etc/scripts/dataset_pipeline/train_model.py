@@ -257,7 +257,9 @@ def run_training(config):
     head = 'CRF' if config.use_crf else 'softmax'
     click.echo(f'training {config.model_name} with a {head} head')
 
-    tokenizer = AutoTokenizer.from_pretrained(config.model_name)
+    tokenizer = AutoTokenizer.from_pretrained(config.model_name, use_fast=True)
+    if not tokenizer.is_fast:
+        raise RuntimeError('need a fast tokenizer for word_ids, got a slow one')
     train_ds = PhraseDataset(config.data_dir / 'train.jsonl', tokenizer, config.max_length)
     val_ds = PhraseDataset(config.data_dir / 'val.jsonl', tokenizer, config.max_length)
     test_ds = PhraseDataset(config.data_dir / 'test.jsonl', tokenizer, config.max_length)
