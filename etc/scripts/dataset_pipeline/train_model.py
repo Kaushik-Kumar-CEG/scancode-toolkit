@@ -41,6 +41,9 @@ class Config:
     adam_epsilon: float = 1e-6
     early_stopping_patience: int = 3
 
+    # cap examples per split for a quick smoke test, 0 uses everything
+    limit: int = 0
+
     # turn off to train a plain softmax tagger for ablation
     use_crf: bool = True
     # extra weighted cross entropy added to the CRF loss, 0 turns it off
@@ -105,10 +108,12 @@ def align_labels(tokens, word_labels, tokenizer, max_length):
 class PhraseDataset:
     """Reads a BIOES JSONL split and encodes each rule for the model"""
 
-    def __init__(self, path, tokenizer, max_length):
+    def __init__(self, path, tokenizer, max_length, limit=0):
         self.examples = []
         self.truncated = 0
         for record in load_jsonl(path):
+            if limit and len(self.examples) >= limit:
+                break
             tokens = record['tokens']
             labels = record['bioes_labels']
             if not tokens:
@@ -260,9 +265,9 @@ def run_training(config):
     tokenizer = AutoTokenizer.from_pretrained(config.model_name, use_fast=True)
     if not tokenizer.is_fast:
         raise RuntimeError('need a fast tokenizer for word_ids, got a slow one')
-    train_ds = PhraseDataset(config.data_dir / 'train.jsonl', tokenizer, config.max_length)
-    val_ds = PhraseDataset(config.data_dir / 'val.jsonl', tokenizer, config.max_length)
-    test_ds = PhraseDataset(config.data_dir / 'test.jsonl', tokenizer, config.max_length)
+    train_ds = PhraseDataset(config.data_dir / 'train.jsonl', tokenizer, config.max_length, config.limit)
+    val_ds = PhraseDataset(config.data_dir / 'val.jsonl', tokenizer, config.max_length, config.limit)
+    test_ds = PhraseDataset(config.data_dir / 'test.jsonl', tokenizer, config.max_length, config.limit)
 
     click.echo(f'examples  train: {len(train_ds)}  val: {len(val_ds)}  test: {len(test_ds)}')
     if train_ds.truncated:
@@ -346,8 +351,10 @@ def run_training(config):
               help='Train a plain softmax tagger instead of the CRF head')
 @click.option('--with-isr', is_flag=True, default=False,
               help='Also report injection success rate, needs scancode installed')
+@click.option('--limit', default=0, type=int,
+              help='Cap examples per split for a quick smoke test, 0 uses everything')
 @click.option('--seed', default=42, type=int)
-def main(data_dir, output_dir, model_name, epochs, no_crf, with_isr, seed):
+def main(data_dir, output_dir, model_name, epochs, no_crf, with_isr, limit, seed):
     """Train the required phrase tagger from a BIOES dataset"""
     config = Config(
         data_dir=Path(data_dir),
@@ -356,6 +363,7 @@ def main(data_dir, output_dir, model_name, epochs, no_crf, with_isr, seed):
         epochs=epochs,
         use_crf=not no_crf,
         with_isr=with_isr,
+        limit=limit,
         seed=seed,
     )
     run_training(config)
