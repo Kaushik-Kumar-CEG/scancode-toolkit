@@ -83,6 +83,8 @@ def load_tagger(model_dir, train_config):
         state = load_file(str(safetensors_file))
     else:
         state = torch.load(Path(model_dir) / 'pytorch_model.bin', map_location='cpu')
+    # class_weights is a training only buffer, it may be absent here
+    state = {k: v for k, v in state.items() if k != 'class_weights'}
     tagger.load_state_dict(state)
     return tagger.eval()
 
