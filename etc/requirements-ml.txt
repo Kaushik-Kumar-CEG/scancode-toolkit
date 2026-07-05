@@ -5,14 +5,17 @@
 # install with: pip install -r etc/requirements-ml.txt
 
 torch>=2.0
-transformers==4.44.2
-sentencepiece==0.2.0
+transformers>=4.44
+sentencepiece>=0.2
 protobuf>=3.20
-accelerate==0.33.0
+accelerate>=0.33
 
 # CRF layer on top of the token classifier
-pytorch-crf==0.7.2
+pytorch-crf>=0.7.2
+
+# 8 bit optimizer to fit deberta-large on a 16gb gpu, optional at runtime
+bitsandbytes>=0.43
 
 # ONNX export for CPU inference
-onnx==1.16.2
-onnxruntime==1.18.1
+onnx>=1.16
+onnxruntime>=1.18
