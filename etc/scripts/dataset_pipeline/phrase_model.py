@@ -25,8 +25,13 @@ class PhraseTagger(nn.Module):
         self.aux_ce_weight = config.aux_ce_weight
         self.num_labels = len(LABELS)
 
-        self.backbone = AutoModel.from_pretrained(config.model_name)
+        # newer transformers loads the checkpoint in its stored fp16, force fp32
+        # so the fresh classifier head matches and deberta stays numerically stable
+        self.backbone = AutoModel.from_pretrained(config.model_name).float()
         self.backbone.gradient_checkpointing_enable()
+        # without this the checkpointed backbone can get no gradient and only the
+        # head trains, while the loss still looks fine
+        self.backbone.enable_input_require_grads()
 
         hidden_size = self.backbone.config.hidden_size
         dropout = getattr(self.backbone.config, 'hidden_dropout_prob', 0.1)
@@ -140,7 +145,7 @@ def build_optimizer(config, model):
 
     def rate_for(name):
         if name.startswith('classifier') or name.startswith('crf'):
-            return config.base_lr
+            return config.head_lr
         if '.encoder.layer.' in name:
             layer = int(name.split('.encoder.layer.')[1].split('.')[0])
             return config.base_lr * (config.layer_decay ** (num_layers - layer))
@@ -154,7 +159,13 @@ def build_optimizer(config, model):
         decay = 0.0 if any(nd in name for nd in no_decay) else config.weight_decay
         groups.append({'params': [param], 'lr': rate_for(name), 'weight_decay': decay})
 
-    return AdamW(groups, lr=config.base_lr, eps=config.adam_epsilon, betas=(0.9, 0.999))
+    # the 8 bit optimizer keeps deberta-large inside a 16gb gpu, fall back to
+    # plain AdamW where bitsandbytes is not installed
+    try:
+        from bitsandbytes.optim import AdamW8bit
+        return AdamW8bit(groups, lr=config.base_lr, eps=config.adam_epsilon, betas=(0.9, 0.999))
+    except ImportError:
+        return AdamW(groups, lr=config.base_lr, eps=config.adam_epsilon, betas=(0.9, 0.999))
 
 
 class PhraseTrainer(Trainer):
