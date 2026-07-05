@@ -3,8 +3,6 @@
 import sys
 from pathlib import Path
 
-import pytest
-
 sys.path.insert(0, str(Path(__file__).parent))
 from train_model import align_labels
 from train_model import decode_row
@@ -113,7 +111,6 @@ def test_viterbi_avoids_forbidden_transition():
 
 
 def test_compute_metrics_perfect_and_exact():
-    pytest.importorskip('seqeval')
     from train_model import compute_metrics
 
     # two rules, word level predictions and labels line up perfectly
@@ -125,7 +122,6 @@ def test_compute_metrics_perfect_and_exact():
 
 
 def test_compute_metrics_counts_a_miss():
-    pytest.importorskip('seqeval')
     from train_model import compute_metrics
 
     # predict O everywhere, the gold has one phrase, so f1 is 0
