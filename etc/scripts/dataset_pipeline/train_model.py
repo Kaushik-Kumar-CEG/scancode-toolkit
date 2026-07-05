@@ -1,6 +1,7 @@
 # finetunes a DeBERTa token classifier to predict required phrase spans
 # reads the BIOES JSONL that build_dataset.py produces
 # torch and transformers are imported lazily so the tests can run without them
+import inspect
 import json
 import random
 from dataclasses import dataclass
@@ -34,6 +35,8 @@ class Config:
     batch_size: int = 1
     grad_accum: int = 16
     base_lr: float = 2e-5
+    # the classifier and crf start from scratch so they learn at a higher rate
+    head_lr: float = 1e-4
     layer_decay: float = 0.98
     weight_decay: float = 0.01
     warmup_ratio: float = 0.1
@@ -43,11 +46,14 @@ class Config:
 
     # cap examples per split for a quick smoke test, 0 uses everything
     limit: int = 0
+    # pick up from the last saved checkpoint in output_dir if a run died
+    resume: bool = False
 
     # turn off to train a plain softmax tagger for ablation
     use_crf: bool = True
-    # extra weighted cross entropy added to the CRF loss, 0 turns it off
-    aux_ce_weight: float = 0.0
+    # light weighted cross entropy on top of the CRF loss to protect the rare
+    # boundary labels against the O heavy imbalance, set 0 for pure CRF
+    aux_ce_weight: float = 0.3
     # report injection success rate too, needs scancode importable
     with_isr: bool = False
 
@@ -180,28 +186,31 @@ def decode_row(pred_row, label_row):
 
 
 def compute_metrics(eval_pred):
-    """Entity level F1 plus a strict rule level exact match"""
-    from seqeval.metrics import f1_score
-    from seqeval.metrics import precision_score
-    from seqeval.metrics import recall_score
-    from seqeval.scheme import IOBES
+    """Strict entity level micro F1 plus a rule level exact match
 
+    With a single phrase type this is just the span set overlap, so we score
+    it directly and skip the seqeval dependency
+    """
     predictions, labels = eval_pred
-    pred_tags = []
-    true_tags = []
+    tp = fp = fn = 0
     exact = 0
     for pred_row, label_row in zip(predictions, labels):
         predicted, actual = decode_row(pred_row, label_row)
-        pred_tags.append(predicted)
-        true_tags.append(actual)
-        if extract_spans(predicted) == extract_spans(actual):
+        pred_spans = extract_spans(predicted)
+        true_spans = extract_spans(actual)
+        tp += len(pred_spans & true_spans)
+        fp += len(pred_spans - true_spans)
+        fn += len(true_spans - pred_spans)
+        if pred_spans == true_spans:
             exact += 1
 
-    scored = dict(mode='strict', scheme=IOBES)
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
     return {
-        'f1': f1_score(true_tags, pred_tags, **scored),
-        'precision': precision_score(true_tags, pred_tags, **scored),
-        'recall': recall_score(true_tags, pred_tags, **scored),
+        'f1': f1,
+        'precision': precision,
+        'recall': recall,
         'exact_match': exact / len(predictions) if len(predictions) else 0.0,
     }
 
@@ -304,19 +313,26 @@ def run_training(config):
         dataloader_num_workers=2,
     )
 
-    trainer = PhraseTrainer(
+    trainer_kwargs = dict(
         model=model,
         args=args,
         train_dataset=train_ds,
         eval_dataset=val_ds,
         data_collator=collator,
-        tokenizer=tokenizer,
         compute_metrics=compute_metrics,
         optimizers=(build_optimizer(config, model), None),
         callbacks=[EarlyStoppingCallback(early_stopping_patience=config.early_stopping_patience)],
     )
 
-    trainer.train()
+    # transformers renamed the tokenizer arg to processing_class, support both
+    if 'processing_class' in inspect.signature(PhraseTrainer.__init__).parameters:
+        trainer_kwargs['processing_class'] = tokenizer
+    else:
+        trainer_kwargs['tokenizer'] = tokenizer
+
+    trainer = PhraseTrainer(**trainer_kwargs)
+
+    trainer.train(resume_from_checkpoint=config.resume or None)
     trainer.save_model(str(config.output_dir))
 
     # the exporter reads this back to rebuild the model
@@ -347,23 +363,34 @@ def run_training(config):
               help='Where to write the trained model and metrics')
 @click.option('--model-name', default=MODEL_NAME, help='Base model to finetune')
 @click.option('--epochs', default=8, type=int)
+@click.option('--base-lr', default=2e-5, type=float, help='Learning rate for the backbone')
+@click.option('--head-lr', default=1e-4, type=float, help='Learning rate for the classifier and crf head')
+@click.option('--aux-ce-weight', default=0.3, type=float,
+              help='Weight of the auxiliary weighted cross entropy, 0 for pure CRF')
 @click.option('--no-crf', is_flag=True, default=False,
               help='Train a plain softmax tagger instead of the CRF head')
 @click.option('--with-isr', is_flag=True, default=False,
               help='Also report injection success rate, needs scancode installed')
 @click.option('--limit', default=0, type=int,
               help='Cap examples per split for a quick smoke test, 0 uses everything')
+@click.option('--resume', is_flag=True, default=False,
+              help='Resume from the last checkpoint in output-dir after a crash')
 @click.option('--seed', default=42, type=int)
-def main(data_dir, output_dir, model_name, epochs, no_crf, with_isr, limit, seed):
+def main(data_dir, output_dir, model_name, epochs, base_lr, head_lr, aux_ce_weight,
+         no_crf, with_isr, limit, resume, seed):
     """Train the required phrase tagger from a BIOES dataset"""
     config = Config(
         data_dir=Path(data_dir),
         output_dir=Path(output_dir),
         model_name=model_name,
         epochs=epochs,
+        base_lr=base_lr,
+        head_lr=head_lr,
+        aux_ce_weight=aux_ce_weight,
         use_crf=not no_crf,
         with_isr=with_isr,
         limit=limit,
+        resume=resume,
         seed=seed,
     )
     run_training(config)
