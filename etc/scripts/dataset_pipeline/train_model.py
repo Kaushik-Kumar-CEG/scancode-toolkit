@@ -48,6 +48,8 @@ class Config:
     limit: int = 0
     # pick up from the last saved checkpoint in output_dir if a run died
     resume: bool = False
+    # average the last few checkpoints into the final model, 0 turns it off
+    avg_checkpoints: int = 3
 
     # turn off to train a plain softmax tagger for ablation
     use_crf: bool = True
@@ -253,6 +255,30 @@ def evaluate_isr(records, model, tokenizer, max_length):
     return injectable / total if total else 0.0
 
 
+def average_checkpoints(output_dir, num):
+    """Mean of the weights from the last few epoch checkpoints
+
+    Averaging nearby checkpoints smooths out the noise from the last steps and
+    usually gains a little F1 over picking a single one
+    """
+    import glob
+    from safetensors.torch import load_file
+
+    paths = sorted(
+        glob.glob(str(output_dir / 'checkpoint-*')),
+        key=lambda p: int(p.split('-')[-1]),
+    )[-num:]
+    if len(paths) < 2:
+        return None
+
+    states = [load_file(str(Path(p) / 'model.safetensors')) for p in paths]
+    averaged = {}
+    for key in states[0]:
+        stacked = [state[key].float() for state in states]
+        averaged[key] = sum(stacked) / len(stacked)
+    return averaged
+
+
 def run_training(config):
     """Train, evaluate and save the model, callable from a notebook or main()"""
     import torch
@@ -301,7 +327,7 @@ def run_training(config):
         max_grad_norm=config.max_grad_norm,
         eval_strategy='epoch',
         save_strategy='epoch',
-        save_total_limit=2,
+        save_total_limit=max(3, config.avg_checkpoints),
         load_best_model_at_end=True,
         metric_for_best_model='f1',
         greater_is_better=True,
@@ -333,6 +359,13 @@ def run_training(config):
     trainer = PhraseTrainer(**trainer_kwargs)
 
     trainer.train(resume_from_checkpoint=config.resume or None)
+
+    if config.avg_checkpoints:
+        averaged = average_checkpoints(config.output_dir, config.avg_checkpoints)
+        if averaged:
+            model.load_state_dict(averaged, strict=False)
+            click.echo(f'averaged the last {config.avg_checkpoints} checkpoints')
+
     trainer.save_model(str(config.output_dir))
 
     # the exporter reads this back to rebuild the model
@@ -375,9 +408,11 @@ def run_training(config):
               help='Cap examples per split for a quick smoke test, 0 uses everything')
 @click.option('--resume', is_flag=True, default=False,
               help='Resume from the last checkpoint in output-dir after a crash')
+@click.option('--avg-checkpoints', default=3, type=int,
+              help='Average the last N checkpoints into the final model, 0 turns it off')
 @click.option('--seed', default=42, type=int)
 def main(data_dir, output_dir, model_name, epochs, base_lr, head_lr, aux_ce_weight,
-         no_crf, with_isr, limit, resume, seed):
+         no_crf, with_isr, limit, resume, avg_checkpoints, seed):
     """Train the required phrase tagger from a BIOES dataset"""
     config = Config(
         data_dir=Path(data_dir),
@@ -391,6 +426,7 @@ def main(data_dir, output_dir, model_name, epochs, base_lr, head_lr, aux_ce_weig
         with_isr=with_isr,
         limit=limit,
         resume=resume,
+        avg_checkpoints=avg_checkpoints,
         seed=seed,
     )
     run_training(config)
