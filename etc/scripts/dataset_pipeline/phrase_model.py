@@ -8,6 +8,7 @@ from torchcrf import CRF
 from transformers import AutoModel
 from transformers import Trainer
 
+from train_model import first_subword_positions
 from train_model import IGNORE_INDEX
 from train_model import LABELS
 
@@ -124,6 +125,25 @@ class PhraseTagger(nn.Module):
             result['predictions'] = self.pad_decoded(decoded, mask.size(1), emissions.device)
 
         return result
+
+    def predict_words(self, input_ids, attention_mask, word_ids):
+        """Label id per word for a single rule, without labels
+
+        forward() needs labels to find the first subword of each word, which we
+        do not have at inference time, so take those positions from the
+        tokenizer word_ids and decode from the CRF directly
+        """
+        emissions = self.emissions(input_ids, attention_mask)
+        positions = first_subword_positions(word_ids)
+        if not positions:
+            return []
+
+        word_emissions = emissions[0, positions].unsqueeze(0).float()
+        if not self.use_crf:
+            return word_emissions.argmax(dim=-1)[0].tolist()
+
+        mask = torch.ones(word_emissions.shape[:2], dtype=torch.bool, device=emissions.device)
+        return self.crf.decode(word_emissions, mask=mask)[0]
 
     def pad_decoded(self, decoded, width, device):
         """Turn the variable length CRF paths into a padded tensor"""

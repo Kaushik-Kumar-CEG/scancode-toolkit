@@ -113,6 +113,26 @@ def align_labels(tokens, word_labels, tokenizer, max_length):
     return encoding
 
 
+def first_subword_positions(word_ids):
+    """Subword positions that start a new word
+
+    word_ids comes from a fast tokenizer encoding and has None for special
+    tokens. Training locates words through the labels, inference has none, so
+    the tagger uses these positions instead
+    """
+    positions = []
+    previous = None
+    for i, word_id in enumerate(word_ids):
+        if word_id is None:
+            previous = None
+            continue
+        if word_id != previous:
+            positions.append(i)
+        previous = word_id
+
+    return positions
+
+
 class PhraseDataset:
     """Reads a BIOES JSONL split and encodes each rule for the model"""
 
