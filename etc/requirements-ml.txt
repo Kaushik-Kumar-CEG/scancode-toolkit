@@ -13,6 +13,10 @@ accelerate>=0.33
 # CRF layer on top of the token classifier
 pytorch-crf>=0.7.2
 
+# reading the trained weights and pulling the model from the hub
+safetensors>=0.4
+huggingface-hub>=0.24
+
 # 8 bit optimizer to fit deberta-large on a 16gb gpu, optional at runtime
 bitsandbytes>=0.43
 
