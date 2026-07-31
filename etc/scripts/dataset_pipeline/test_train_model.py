@@ -7,8 +7,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from train_model import align_labels
 from train_model import decode_row
 from train_model import extract_spans
+from train_model import first_subword_positions
 from train_model import IGNORE_INDEX
 from train_model import LABEL2ID
+from train_model import LABELS
 
 
 class FakeEncoding(dict):
@@ -83,6 +85,67 @@ class TestAlignLabels:
         tokenizer = FakeTokenizer([None, 0, 1, None])
         encoding = align_labels(['the', 'license'], ['O', 'O'], tokenizer, 512)
         assert encoding['labels'] == [IGNORE_INDEX, 0, 0, IGNORE_INDEX]
+
+
+class TestFirstSubwordPositions:
+
+    def test_skips_specials_and_continuations(self):
+        # CLS w0 w1a w1b w2 SEP
+        assert first_subword_positions([None, 0, 1, 1, 2, None]) == [1, 2, 4]
+
+    def test_without_special_tokens(self):
+        # depending on its files a tokenizer may add no CLS or SEP at all
+        assert first_subword_positions([0, 1, 2]) == [0, 1, 2]
+
+    def test_long_word(self):
+        assert first_subword_positions([None, 0, 0, 0, 1, None]) == [1, 4]
+
+    def test_nothing_to_tag(self):
+        assert first_subword_positions([None, None]) == []
+        assert first_subword_positions([]) == []
+
+
+def make_crf_tagger():
+    """A PhraseTagger with only the CRF built, the backbone needs a download"""
+    import torch
+    from torchcrf import CRF
+    from phrase_model import PhraseTagger
+
+    tagger = PhraseTagger.__new__(PhraseTagger)
+    torch.nn.Module.__init__(tagger)
+    tagger.use_crf = True
+    tagger.num_labels = len(LABELS)
+    tagger.crf = CRF(len(LABELS), batch_first=True)
+    # zero transitions make the decode a plain argmax, so the expected path is obvious
+    with torch.no_grad():
+        for param in tagger.crf.parameters():
+            param.zero_()
+    return tagger
+
+
+def test_predict_words_uses_the_first_subword():
+    import torch
+
+    tagger = make_crf_tagger()
+    # CLS w0 w1a w1b SEP, the score on the continuation subword must be ignored
+    emissions = torch.zeros((1, 5, len(LABELS)))
+    emissions[0, 1, LABEL2ID['B-REQ']] = 9.0
+    emissions[0, 2, LABEL2ID['E-REQ']] = 9.0
+    emissions[0, 3, LABEL2ID['S-REQ']] = 9.0
+    tagger.emissions = lambda input_ids, attention_mask: emissions
+
+    ids = torch.zeros((1, 5), dtype=torch.long)
+    tags = tagger.predict_words(ids, ids, [None, 0, 1, 1, None])
+    assert tags == [LABEL2ID['B-REQ'], LABEL2ID['E-REQ']]
+
+
+def test_predict_words_with_no_words():
+    import torch
+
+    tagger = make_crf_tagger()
+    tagger.emissions = lambda input_ids, attention_mask: torch.zeros((1, 2, len(LABELS)))
+    ids = torch.zeros((1, 2), dtype=torch.long)
+    assert tagger.predict_words(ids, ids, [None, None]) == []
 
 
 def test_viterbi_with_zero_transitions_is_argmax():
