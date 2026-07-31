@@ -133,11 +133,11 @@ class PhraseTagger(nn.Module):
         do not have at inference time, so take those positions from the
         tokenizer word_ids and decode from the CRF directly
         """
-        emissions = self.emissions(input_ids, attention_mask)
         positions = first_subword_positions(word_ids)
         if not positions:
             return []
 
+        emissions = self.emissions(input_ids, attention_mask)
         word_emissions = emissions[0, positions].unsqueeze(0).float()
         if not self.use_crf:
             return word_emissions.argmax(dim=-1)[0].tolist()
