@@ -4,4 +4,4 @@ is_license_notice: yes
 relevance: 100
 ---
 
-package is licensed under the MIT and Apache License 2.0 licenses.
+package is {{licensed under the MIT}} and {{Apache License 2.0}} licenses.
