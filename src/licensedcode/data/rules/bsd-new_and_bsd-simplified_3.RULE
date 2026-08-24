@@ -6,4 +6,4 @@ minimum_coverage: 100
 notes: typo in SPDX license key found in FreeBSD
 ---
 
-SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause-NetBSDE
+SPDX-License-Identifier: {{BSD-3-Clause}} AND {{BSD-2-Clause}}-NetBSDE
