@@ -6,5 +6,5 @@ ignorable_urls:
     - http://jquery.org/license
 ---
 
-Dual licensed under the MIT and GPLv2 licenses just as jQuery is:
+Dual {{licensed under the MIT}} and {{GPLv2}} licenses just as jQuery is:
 http://jquery.org/license
