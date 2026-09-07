@@ -1,4 +1,5 @@
 # Run the trained phrase tagger over license rules and mark its predictions.
+from dataclasses import dataclass
 import json
 import os
 import sys
@@ -22,6 +23,7 @@ from licensedcode.tokenize import get_existing_required_phrase_spans
 from licensedcode.tokenize import required_phrase_splitter
 
 from train_model import extract_spans
+from train_model import first_subword_positions
 from train_model import ID2LABEL
 from train_model import load_final_model
 
@@ -29,6 +31,25 @@ from train_model import load_final_model
 MIN_TOKENS = 2
 MIN_SINGLE_TOKEN_LEN = 5
 MAX_RULE_TEXT = 4000
+
+
+@dataclass(frozen=True)
+class PhrasePrediction:
+    """One predicted required phrase."""
+
+    text: str
+    start_word: int
+    end_word: int
+    confidence: float
+
+
+@dataclass(frozen=True)
+class PredictionResult:
+    """Predictions and tokenization details for one rule."""
+
+    words: tuple[str, ...]
+    phrases: tuple[PhrasePrediction, ...]
+    truncated: bool
 
 
 def load_model(model, hf_token=None):
@@ -109,6 +130,79 @@ def encode_words(tokenizer, words, max_length):
         raise ValueError("Complete-word encoding exceeds the model maximum length")
 
     return encoding, complete_words < len(words)
+
+
+def span_confidence(crf, word_emissions, tags, mask, free, span):
+    """Return the CRF probability mass agreeing with one decoded span."""
+    start, end = span
+    pinned = word_emissions.clone()
+    floor = float(word_emissions.min()) - 10000.0
+
+    for position in range(start, end + 1):
+        label = int(tags[0, position])
+        keep = float(pinned[0, position, label])
+        pinned[0, position] = floor
+        pinned[0, position, label] = keep
+
+    constrained = crf(pinned, tags, mask=mask, reduction="none")
+    confidence = float((free - constrained).detach().exp())
+    return min(max(confidence, 0.0), 1.0)
+
+
+def predict_rule(tagger, tokenizer, max_length, text):
+    """Return phrase predictions for rule text without changing a rule."""
+    import torch
+
+    words = words_from_text(text)
+    if not words:
+        return PredictionResult(words=(), phrases=(), truncated=False)
+
+    encoding, truncated = encode_words(tokenizer, words, max_length)
+    word_ids = encoding.word_ids()
+    positions = first_subword_positions(word_ids)
+    device = next(tagger.parameters()).device
+    input_ids = torch.tensor([encoding["input_ids"]], dtype=torch.long, device=device)
+    attention_mask = torch.tensor(
+        [encoding["attention_mask"]],
+        dtype=torch.long,
+        device=device,
+    )
+
+    with torch.inference_mode():
+        emissions = tagger.emissions(input_ids, attention_mask)
+        word_emissions = emissions[:, positions].float()
+        mask = torch.ones(
+            word_emissions.shape[:2],
+            dtype=torch.bool,
+            device=word_emissions.device,
+        )
+        decoded = tagger.crf.decode(word_emissions, mask=mask)[0]
+        tags = torch.tensor([decoded], device=word_emissions.device)
+        free = tagger.crf(word_emissions, tags, mask=mask, reduction="none")
+        labels = [ID2LABEL[int(label)] for label in decoded]
+        predictions = [
+            PhrasePrediction(
+                text=" ".join(words[start : end + 1]),
+                start_word=start,
+                end_word=end,
+                confidence=span_confidence(
+                    tagger.crf,
+                    word_emissions,
+                    tags,
+                    mask,
+                    free,
+                    (start, end),
+                ),
+            )
+            for start, end in extract_spans(labels)
+        ]
+
+    predictions.sort(key=lambda prediction: (prediction.start_word, prediction.end_word))
+    return PredictionResult(
+        words=tuple(words),
+        phrases=tuple(predictions),
+        truncated=truncated,
+    )
 
 
 def phrases_from_tags(tags, words):

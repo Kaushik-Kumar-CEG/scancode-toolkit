@@ -18,6 +18,7 @@ from add_ml_phrases import main
 from add_ml_phrases import new_counts
 from add_ml_phrases import phrases_from_tags
 from add_ml_phrases import predict_phrases
+from add_ml_phrases import predict_rule
 from add_ml_phrases import process_rules
 from add_ml_phrases import select_rules
 from add_ml_phrases import words_from_text
@@ -188,6 +189,42 @@ class TestPredictPhrases:
         tagger = StubTagger([])
         assert predict_phrases(tagger, FakeTokenizer(), 10, []) == ([], False)
         assert tagger.calls == 0
+
+
+class TestPredictRule:
+    def test_returns_scored_phrase_offsets(self):
+        torch = pytest.importorskip("torch")
+        from phrase_model import ConstrainedCRF
+
+        class Tagger(torch.nn.Module):
+            def __init__(self):
+                super().__init__()
+                self.crf = ConstrainedCRF(5, batch_first=True)
+                with torch.no_grad():
+                    for parameter in self.crf.parameters():
+                        parameter.zero_()
+
+            def emissions(self, input_ids, attention_mask):
+                emissions = torch.zeros((1, input_ids.shape[1], 5))
+                emissions[0, 2, LABEL2ID["B-REQ"]] = 9.0
+                emissions[0, 3, LABEL2ID["E-REQ"]] = 9.0
+                return emissions
+
+        result = predict_rule(
+            Tagger(),
+            FakeTokenizer(),
+            20,
+            "under the MIT License terms",
+        )
+
+        assert [phrase.text for phrase in result.phrases] == ["the MIT"]
+        assert result.phrases[0].start_word == 1
+        assert result.phrases[0].end_word == 2
+        assert 0.0 <= result.phrases[0].confidence <= 1.0
+        assert not result.truncated
+
+    def test_empty_text_does_not_run_model(self):
+        assert predict_rule(object(), FakeTokenizer(), 20, "").phrases == ()
 
 
 class TestIsUpdatable:
